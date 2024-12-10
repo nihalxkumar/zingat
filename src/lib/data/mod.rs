@@ -1,4 +1,5 @@
 pub mod query;
+pub mod model;
 
 use std::str::FromStr;
 

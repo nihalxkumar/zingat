@@ -1,2 +1,4 @@
 pub mod clip;
-mod time;
+pub mod time;
+
+pub use clip::Clip;
