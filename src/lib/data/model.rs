@@ -12,7 +12,7 @@ pub struct Clip{
     pub(in crate::data) title: Option<String>,
     pub(in crate::data) posted: NaiveDateTime,
     pub(in crate::data) expires: Option<NaiveDateTime>,
-    pub(in crate::data) password: Option<String>,
+    pub(crate) password: Option<String>,
     pub(in crate::data) hits: i64,
 }
 
@@ -37,6 +37,14 @@ impl TryFrom<Clip> for crate::domain::Clip {
 
 pub struct GetClip {
     pub(in crate::data)shortcode: String,
+}
+
+impl From<crate::service::ask::GetClip> for GetClip {
+    fn from(req: crate::service::ask::GetClip) -> Self {
+        Self {
+            shortcode: req.shortcode.into_inner()
+        }
+    }
 }
 
 impl From<ShortCode> for GetClip {
