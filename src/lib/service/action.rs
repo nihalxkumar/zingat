@@ -1,6 +1,7 @@
 use crate::data::{query, DatabasePool, Transaction};
 use crate::service::ask;
 use crate::{Clip, ServiceError, ShortCode};
+use std::convert::TryInto;
 
 pub async fn get_clip(req: ask::GetClip, pool: &DatabasePool) -> Result<Clip, ServiceError> {
     let user_password = req.password.clone();
