@@ -8,7 +8,6 @@ use serde::{Deserialize, Serialize};
 use sqlx::error::DatabaseError;
 use sqlx::Sqlite;
 use uuid::Uuid;
-use crate::domain::clip::field::ClipId;
 
 #[derive(Debug, thiserror::Error)]
 pub enum DataError {

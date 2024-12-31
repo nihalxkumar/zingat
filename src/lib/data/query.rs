@@ -1,6 +1,5 @@
 use super::model;
 use crate::data::{DataError, DatabasePool};
-use crate::ShortCode;
 use sqlx::Row;
 
 type Result<T> = std::result::Result<T, DataError>;

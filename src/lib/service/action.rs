@@ -1,8 +1,7 @@
-use crate::data::{query, DatabasePool, Transaction};
+use crate::data::{query, DatabasePool};
 use crate::service::ask;
-use crate::{Clip, ServiceError, ShortCode};
+use crate::{Clip, ServiceError};
 use std::convert::TryInto;
-use crate::data::model::NewClip;
 
 pub async fn new_clip(req: ask::NewClip, pool: &DatabasePool) -> Result<Clip, ServiceError> {
     Ok(query::new_clip(req, pool).await?.try_into()?)
