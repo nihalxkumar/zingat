@@ -19,7 +19,7 @@ impl Default for Home {
 
 impl PageContext for Home {
     fn title(&self) -> &str {
-        "Zingat - pastebin in rs"
+    "Clipboard sharing"
     }
     fn template_path(&self) -> &str {
         "home"
