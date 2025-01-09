@@ -1,8 +1,25 @@
 use super::model;
 use crate::data::{DataError, DatabasePool};
 use sqlx::Row;
+use crate::ShortCode;
 
 type Result<T> = std::result::Result<T, DataError>;
+
+pub async fn increase_hit_count(
+    shortcode: &ShortCode,
+    hits: u32,
+    pool: &DatabasePool,
+) -> Result<()> {
+    let shortcode = shortcode.as_str();
+    Ok(sqlx::query!(
+        "UPDATE clips SET hits = hits + ? WHERE shortcode = ?",
+        hits,
+        shortcode
+    )
+        .execute(pool)
+        .await
+        .map(|_|())?)
+}
 
 pub async fn get_clip<M: Into<model::GetClip>>(model: M, pool: &DatabasePool) -> Result<model::Clip> {
 

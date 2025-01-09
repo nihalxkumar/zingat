@@ -3,6 +3,7 @@ use zingat::web::{renderer::Renderer};
 use dotenv::dotenv;
 use std::path::PathBuf;
 use structopt::StructOpt;
+use zingat::web::hitcounter::HitCounter;
 
 #[derive(Debug, StructOpt)]
 #[structopt(name = "httpd", about = "Zingat HTTP server")]
@@ -22,15 +23,19 @@ fn main() {
 
     let handle = rt.handle().clone();
 
+    let renderer = Renderer::new(opt.template_directory.clone());
+
+    let database = rt.block_on(async move {AppDatabase::new(&opt.connection_string).await});
+
+    let hit_counter = HitCounter::new(database.get_pool().clone(), handle.clone());
+
+    let config = zingat::RocketConfig{
+        renderer,
+        database,
+        hit_counter,
+    };
+
     rt.block_on(async move {
-        let renderer = Renderer::new(opt.template_directory);
-        let database = AppDatabase::new(&opt.connection_string).await;
-
-        let config = zingat::RocketConfig{
-            renderer,
-            database,
-        };
-
         zingat::rocket(config)
             .launch()
             .await
