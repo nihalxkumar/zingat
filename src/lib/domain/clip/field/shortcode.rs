@@ -4,7 +4,7 @@ use rocket::{UriDisplayPath, UriDisplayQuery};
 use serde::{Deserialize, Serialize};
 use crate::domain::clip::ClipError;
 
-#[derive(Debug, Clone, Deserialize, Serialize, From, UriDisplayQuery, UriDisplayPath)]
+#[derive(Debug, Clone, Deserialize, Serialize, From, UriDisplayQuery, UriDisplayPath, Hash, Eq, PartialEq)]
 pub struct ShortCode(String);
 
 impl ShortCode {
