@@ -102,7 +102,7 @@ pub async fn revoke_api_key(api_key: ApiKey, pool: &DatabasePool) -> Result<Revo
     )
 }
 
-pub async fn api_key_in_valid(api_key: ApiKey, pool: &DatabasePool) -> Result<bool> {
+pub async fn api_key_is_valid(api_key: ApiKey, pool: &DatabasePool) -> Result<bool> {
     let bytes = api_key.clone().into_inner();
     Ok(
         sqlx::query("SELECT COUNT(api_key) FROM api_keys WHERE api_key = ?")
