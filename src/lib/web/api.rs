@@ -156,7 +156,7 @@ pub async fn new_clip(
     Ok(Json(clip))
 }
 
-#[rocket::post("/", data = "<req>")]
+#[rocket::put("/", data = "<req>")]
 pub async fn update_clip(
     req: Json<service::ask::UpdateClip>,
     database: &State<AppDatabase>,

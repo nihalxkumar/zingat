@@ -68,15 +68,15 @@ fn new_clip(addr: &str, ask_svc: NewClip, api_key: ApiKey) -> Result<Clip, Box<d
     let addr = format!("{}/api/clip", addr);
     let mut request = client.post(addr);
     request = request.header(API_KEY_HEADER, api_key.to_base64());
-    Ok(request.json(&ask_svc)?.json()?)
+    Ok(request.json(&ask_svc).send()?.json()?)
 }
 
-fn update_clip(addr: &str, ask_svc: NewClip, api_key: ApiKey) -> Result<Clip, Box<dyn Error>> {
+fn update_clip(addr: &str, ask_svc: UpdateClip, api_key: ApiKey) -> Result<Clip, Box<dyn Error>> {
     let client = reqwest::blocking::Client::builder().build()?;
     let addr = format!("{}/api/clip", addr);
     let mut request = client.put(addr);
     request = request.header(API_KEY_HEADER, api_key.to_base64());
-    Ok(request.json(&ask_svc)?.json()?)
+    Ok(request.json(&ask_svc).send()?.json()?)
 }
 
 fn run(opt: Opt) -> Result<(), Box<dyn Error>> {
@@ -88,6 +88,7 @@ fn run(opt: Opt) -> Result<(), Box<dyn Error>> {
             };
             let clip = get_clip(opt.addr.as_str(), req, opt.api_key)?;
             println!("{:#?}", clip);
+            Ok(())
         },
         Command::New { clip, password, expires, title } => {
             let req = NewClip {
@@ -98,6 +99,7 @@ fn run(opt: Opt) -> Result<(), Box<dyn Error>> {
             };
             let clip = new_clip(opt.addr.as_str(), req, opt.api_key)?;
             println!("{:#?}", clip);
+            Ok(())
         }
         Command::Update { clip, password, expires, title, shortcode } => {
             let password = password.unwrap_or_default();
@@ -105,14 +107,17 @@ fn run(opt: Opt) -> Result<(), Box<dyn Error>> {
                 password: password.clone(),
                 shortcode: shortcode.clone(),
             };
-            let original_clip = get_clip(opt.addr.as_str(), svc_req, opt.api_key)?;
+            let original_clip = get_clip(opt.addr.as_str(), svc_req, opt.api_key.clone())?;
             let svc_req = UpdateClip {
                 content: Content::new(clip.as_str())?,
                 expires: expires.unwrap_or(original_clip.expires),
                 title: title.unwrap_or(original_clip.title),
-                password: password,
+                password,
                 shortcode,
-            }
+            };
+            let clip = update_clip(opt.addr.as_str(), svc_req, opt.api_key)?;
+            println!("{:#?}", clip);
+            Ok(())
         }
     }
 }
