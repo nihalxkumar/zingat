@@ -3,7 +3,6 @@ use rocket::form::{self, FromFormField, ValueField};
 use serde::{Deserialize, Serialize};
 
 use crate::domain::clip::ClipError;
-use crate::domain::clip::field::Content;
 use crate::domain::time::Time;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]

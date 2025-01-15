@@ -5,7 +5,6 @@ use std::str::FromStr;
 
 use derive_more::{Display, From};
 use serde::{Deserialize, Serialize};
-use sqlx::error::DatabaseError;
 use sqlx::Sqlite;
 use uuid::Uuid;
 

@@ -1,4 +1,3 @@
-use rocket::http::ext::IntoCollection;
 use super::model;
 use crate::data::{DataError, DatabasePool};
 use sqlx::Row;

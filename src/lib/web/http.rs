@@ -1,13 +1,13 @@
 use crate::data::AppDatabase;
 use crate::service;
-use crate::service::{action, ask};
+use crate::service::action;
 use crate::web::{ctx, form, renderer::Renderer, PageError, PASSWORD_COOKIE, hitcounter::HitCounter};
 use crate::{ServiceError, ShortCode};
 use rocket::form::{Contextual, Form};
 use rocket::http::{Cookie, CookieJar,Status};
 use rocket::response::content::RawHtml;
 use rocket::response::{status, Redirect};
-use rocket::{uri, Catcher, State};
+use rocket::{uri, State};
 
 /// Route to the home page.
 #[rocket::get("/")]
