@@ -19,13 +19,13 @@ impl Time {
 
     /// Convert a [`NaiveDateTime`] into a [`Time`]
     pub fn from_naive_utc(datetime: NaiveDateTime) -> Self {
-        Time(DateTime::from_utc(datetime, Utc))
+        Time(DateTime::from_naive_utc_and_offset(datetime, Utc))
     }
 }
 
 /// The format required is `YYYY-MM-DDThh:mm:ssZ`.
 ///
-/// See the[`chrono`](chrono::format::strftime) docs for more info.
+/// See the [`chrono`](chrono::format::strftime) docs for more info.
 impl FromStr for Time {
     type Err = chrono::ParseError;
     fn from_str(s: &str) -> Result<Self, Self::Err> {

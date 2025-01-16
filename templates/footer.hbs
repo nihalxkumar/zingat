@@ -1,8 +1,21 @@
-<footer class="footer">
-    <div class="content has-text-centered">
-        <p>
-            <strong>Zingat</strong> is a capstone project of the Rust programming course available at <a
-                href="https://zerotomastery.io">zerotomastery.io</a>.
+<footer style="background-color: #282c34; color: white; padding: 20px; text-align: center;">
+    <div style="margin-bottom: 15px;">
+        <a href="https://github.com/nihalxkumar/zingat" target="_blank" style="color: white; text-decoration: none;">
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/github.png" alt="GitHub" style="vertical-align: middle; margin-right: 8px;">
+            Source Code
+        </a>
+    </div>
+    <div>
+        <p style="margin: 0;">
+            Reach out to the developer at <a href="https://x.com/nihalxkumar" target="_blank" style="color: #61dafb; text-decoration: none;">@nihalxkumar</a>
         </p>
     </div>
+    <div style="margin-top: 15px; font-size: 12px; color: #aaa;">
+        <p style="margin: 0;">© <span id="year"></span> Zingat. All rights reserved.</p>
+    </div>
 </footer>
+
+<script>
+    // Set the current year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>

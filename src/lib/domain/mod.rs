@@ -1,2 +1,5 @@
 pub mod clip;
-mod time;
+pub mod time;
+pub mod maintenance;
+
+pub use clip::Clip;

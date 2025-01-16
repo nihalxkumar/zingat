@@ -36,8 +36,16 @@ pub enum ClipError {
 
 }
 
+/// Clip stores all the data about Clips posted to the service.
+///
+/// Each field in the Clip uses a newtype that encapsulates the requirements
+/// for that particular field. If one of the fields cannot be created, then
+/// a Clip cannot be created. This enforcement of field creation ensures
+/// that a Clip will always be valid whenever it is utilized at any point
+/// in the program.
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct Clip {
+    #[serde(skip)]
     pub clip_id: field::ClipId,
     pub shortcode: field::ShortCode,
     pub content: field::Content,
@@ -46,5 +54,4 @@ pub struct Clip {
     pub expires: field::Expires,
     pub password: field::Password,
     pub hits: field::Hits,
-
 }
