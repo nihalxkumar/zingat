@@ -8,7 +8,7 @@ Pastebin like app in rust
 
 Securely share texts on the internet with password protection and expiry date.
 
-![browser-screenshot.png](browser-screenshot.png "Window screenshot of a browser with zingat localhost")
+![browser-screenshot.png](./assets/browser-screenshot.png "Window screenshot of a browser with zingat localhost")
 
 ## Local Installation
 
@@ -33,3 +33,5 @@ Securely share texts on the internet with password protection and expiry date.
 
 - Instead of logging each view (hit) directly into the database, we defer these operations into separate threads. This allows us to batch multiple hits into a single database commit, significantly improving performance and reducing contention on the database.
 - 
+
+![diagram](./assets/zingatdiagram.png)
