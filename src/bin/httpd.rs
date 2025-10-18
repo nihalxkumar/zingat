@@ -9,15 +9,24 @@ use zingat::web::hitcounter::HitCounter;
 #[derive(Debug, StructOpt)]
 #[structopt(name = "httpd", about = "Zingat HTTP server")]
 struct Opt {
-    #[structopt(default_value = "sqlite:data.db")]
+    #[structopt(env = "DATABASE_URL", default_value = "sqlite:data.db")]
     connection_string: String,
-    #[structopt(short, long, parse(from_os_str), default_value = "templates/")]
+    #[structopt(short, long, parse(from_os_str), env = "TEMPLATE_DIR", default_value = "templates/")]
     template_directory: PathBuf,
 }
 
 fn main() {
     dotenv().ok();
     let opt = Opt::from_args();
+
+    // Create database directory if it doesn't exist
+    // Extract directory path from connection string (e.g., sqlite:/app/data/zingat.db -> /app/data)
+    if let Some(db_path) = opt.connection_string.strip_prefix("sqlite:") {
+        if let Some(parent) = std::path::Path::new(db_path).parent() {
+            std::fs::create_dir_all(parent)
+                .unwrap_or_else(|e| eprintln!("Warning: Could not create database directory: {}", e));
+        }
+    }
 
     let rt = tokio::runtime::Runtime::new()
         .expect("failed to spawn tokio runtime");

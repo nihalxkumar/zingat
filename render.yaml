@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: zingat
+    env: docker
+    dockerfilePath: ./Dockerfile
+    disk:
+      name: zingat-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: ROCKET_PORT
+        value: 8000
+      - key: ROCKET_ADDRESS
+        value: 0.0.0.0
+      - key: DATABASE_URL
+        value: sqlite:/app/data/zingat.db
+      - key: TEMPLATE_DIR
+        value: /app/templates

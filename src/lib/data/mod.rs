@@ -28,8 +28,19 @@ impl Database<Sqlite> {
             .connect(connection_str)
             .await;
         match pool {
-            Ok(pool) => Self(pool),
-            Err(e) => panic!("{}", e),
+            Ok(pool) => {
+                // Run migrations
+                sqlx::migrate!("./migrations")
+                    .run(&pool)
+                    .await
+                    .expect("Failed to run database migrations");
+                Self(pool)
+            },
+            Err(e) => {
+                eprintln!("Database connection error: {}", e);
+                eprintln!("Connection string: {}", connection_str);
+                panic!("Failed to connect to database: {}", e)
+            },
         }
     }
     pub fn get_pool(&self) -> &DatabasePool {

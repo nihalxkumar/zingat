@@ -2,8 +2,8 @@ html,body {
     height: 100%;
     font-size: 14px !important;
     font-family: 'Roboto', sans-serif;
-    color: #ffffff;
-    background-color: #282c34;
+    color: #e0e0e0;
+    background-color: #1a1a1a;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -18,9 +18,45 @@ footer {
     border-top: 1px solid #485fc74f;
 }
 
+.navbar {
+    background-color: #252525 !important;
+}
+
+.navbar-item {
+    color: #e0e0e0 !important;
+}
+
+.navbar-item:hover {
+    background-color: #333333 !important;
+}
+
+.hero.is-link {
+    background-color: #333333 !important;
+}
+
 .page-content {
     flex: 1 0 auto;
-    background-color: #282c34 !important;
+    background-color: #1a1a1a !important;
+}
+
+.box {
+    background-color: #252525 !important;
+    color: #e0e0e0 !important;
+}
+
+.message {
+    background-color: #252525 !important;
+}
+
+.message-header {
+    background-color: #333333 !important;
+    color: #e0e0e0 !important;
+}
+
+.message-body {
+    background-color: #2a2a2a !important;
+    color: #e0e0e0 !important;
+    border-color: #3a3a3a !important;
 }
 
 body,html,button,input[type="submit"] {
@@ -30,8 +66,60 @@ textarea,input[type="text"] {
     font-family: 'Roboto Light', monospace !important;
 }
 
+textarea {
+    resize: both;
+    min-height: 300px;
+    overflow: auto;
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #3a3a3a !important;
+}
+
+textarea[readonly] {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #3a3a3a !important;
+}
+
+textarea:focus {
+    border-color: #4a9eff;
+    box-shadow: 0 0 0 0.125em rgba(74, 158, 255, 0.25);
+}
+
+input[type="text"],
+input.input,
+input[type="password"] {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #3a3a3a !important;
+}
+
+input[readonly] {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+
+input[type="text"]:focus,
+input.input:focus {
+    border-color: #4a9eff;
+    box-shadow: 0 0 0 0.125em rgba(74, 158, 255, 0.25);
+}
+
+textarea::placeholder,
+input[type="text"]::placeholder,
+input.input::placeholder,
+input[type="password"]::placeholder {
+    color: #b0b0b0 !important;
+    opacity: 1 !important;
+}
+
+.label {
+    color: #e0e0e0 !important;
+}
+
 .fill-height {
-    height: 100% !important;
+    height: 400px;
+    flex: 1 1 auto;
 }
 
 .dp-modal {
@@ -45,4 +133,65 @@ textarea,input[type="text"] {
 .flex {
     display: flex !important;
     flex-direction: column;
+    min-height: 0;
+}
+
+.flex textarea {
+    resize: both;
+    overflow: auto;
+    flex-shrink: 0;
+}
+
+/* Center navbar logo */
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+/* Password field styling */
+.control.password-field {
+    position: relative;
+}
+
+.control.password-field .input {
+    padding-right: 45px;
+}
+
+button.password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #4a5568;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 1;
+    z-index: 10;
+    height: auto;
+    width: auto;
+    display: inline-block;
+    pointer-events: auto;
+}
+
+button.password-toggle:hover {
+    color: #2d3748;
+}
+
+button.password-toggle i {
+    display: block;
+    color: #4a5568;
+}
+
+button.password-toggle:hover i {
+    color: #2d3748;
+}
+
+input[type="password"] {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
 }

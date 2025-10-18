@@ -1,0 +1,13 @@
+target/
+.git/
+.gitignore
+README.md
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+data.db*
+*.db-shm
+*.db-wal
