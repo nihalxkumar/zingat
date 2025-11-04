@@ -17,3 +17,9 @@ target/
 .idea/
 
 data.db*
+
+# Git worktrees
+.worktrees/
+
+# Ignore documentation
+docs/

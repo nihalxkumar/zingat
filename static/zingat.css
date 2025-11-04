@@ -1,62 +1,112 @@
+/* CSS Variables for Ken Mode (Dark) */
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #252525;
+    --bg-tertiary: #333333;
+    --bg-input: #1e1e1e;
+    --bg-message-body: #2a2a2a;
+
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-password-toggle: #4a5568;
+    --text-password-toggle-hover: #2d3748;
+
+    --border-primary: #3a3a3a;
+    --border-footer: #485fc74f;
+
+    --accent-primary: #4a9eff;
+    --accent-focus-shadow: rgba(74, 158, 255, 0.25);
+}
+
+/* Barbie Mode (Light/Pink) */
+html.barbie-mode {
+    --bg-primary: #fff5f8;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #ffe0eb;
+    --bg-input: #ffffff;
+    --bg-message-body: #fff0f5;
+
+    --text-primary: #2d2d2d;
+    --text-secondary: #666666;
+    --text-password-toggle: #ff69b4;
+    --text-password-toggle-hover: #ff1493;
+
+    --border-primary: #ffc0db;
+    --border-footer: #ffb6c1;
+
+    --accent-primary: #FF69B4;
+    --accent-focus-shadow: rgba(255, 105, 180, 0.25);
+}
+
 html,body {
     height: 100%;
     font-size: 14px !important;
     font-family: 'Roboto', sans-serif;
-    color: #e0e0e0;
-    background-color: #1a1a1a;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
     display: flex;
     flex-direction: column;
 }
+
 footer {
     flex-shrink: 1;
-    border-top: 1px solid #485fc74f;
+    border-top: 1px solid var(--border-footer);
 }
 
 .navbar {
-    background-color: #252525 !important;
+    background-color: var(--bg-secondary) !important;
+    transition: background-color 0.3s ease;
 }
 
 .navbar-item {
-    color: #e0e0e0 !important;
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .navbar-item:hover {
-    background-color: #333333 !important;
+    background-color: var(--bg-tertiary) !important;
 }
 
 .hero.is-link {
-    background-color: #333333 !important;
+    background-color: var(--bg-tertiary) !important;
+    transition: background-color 0.3s ease;
 }
 
 .page-content {
     flex: 1 0 auto;
-    background-color: #1a1a1a !important;
+    background-color: var(--bg-primary) !important;
+    transition: background-color 0.3s ease;
 }
 
 .box {
-    background-color: #252525 !important;
-    color: #e0e0e0 !important;
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .message {
-    background-color: #252525 !important;
+    background-color: var(--bg-secondary) !important;
+    transition: background-color 0.3s ease;
 }
 
 .message-header {
-    background-color: #333333 !important;
-    color: #e0e0e0 !important;
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .message-body {
-    background-color: #2a2a2a !important;
-    color: #e0e0e0 !important;
-    border-color: #3a3a3a !important;
+    background-color: var(--bg-message-body) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body,html,button,input[type="submit"] {
@@ -70,51 +120,54 @@ textarea {
     resize: both;
     min-height: 300px;
     overflow: auto;
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
-    border-color: #3a3a3a !important;
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 textarea[readonly] {
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
-    border-color: #3a3a3a !important;
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
 }
 
 textarea:focus {
-    border-color: #4a9eff;
-    box-shadow: 0 0 0 0.125em rgba(74, 158, 255, 0.25);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 0.125em var(--accent-focus-shadow);
 }
 
 input[type="text"],
 input.input,
 input[type="password"] {
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
-    border-color: #3a3a3a !important;
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 input[readonly] {
-    background-color: #1e1e1e !important;
-    color: #e0e0e0 !important;
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
 }
 
 input[type="text"]:focus,
 input.input:focus {
-    border-color: #4a9eff;
-    box-shadow: 0 0 0 0.125em rgba(74, 158, 255, 0.25);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 0.125em var(--accent-focus-shadow);
 }
 
 textarea::placeholder,
 input[type="text"]::placeholder,
 input.input::placeholder,
 input[type="password"]::placeholder {
-    color: #b0b0b0 !important;
+    color: var(--text-secondary) !important;
     opacity: 1 !important;
 }
 
 .label {
-    color: #e0e0e0 !important;
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease;
 }
 
 .fill-height {
@@ -166,7 +219,7 @@ button.password-toggle {
     transform: translateY(-50%);
     background: transparent;
     border: none;
-    color: #4a5568;
+    color: var(--text-password-toggle);
     cursor: pointer;
     padding: 8px;
     font-size: 16px;
@@ -176,22 +229,150 @@ button.password-toggle {
     width: auto;
     display: inline-block;
     pointer-events: auto;
+    transition: color 0.3s ease;
 }
 
 button.password-toggle:hover {
-    color: #2d3748;
+    color: var(--text-password-toggle-hover);
 }
 
 button.password-toggle i {
     display: block;
-    color: #4a5568;
+    color: var(--text-password-toggle);
+    transition: color 0.3s ease;
 }
 
 button.password-toggle:hover i {
-    color: #2d3748;
+    color: var(--text-password-toggle-hover);
 }
 
 input[type="password"] {
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 2px;
+}
+
+/* Footer Styles */
+footer {
+    padding: 2rem 1.5rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-primary);
+}
+
+.footer-icon {
+    margin-right: 0.5rem;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: var(--bg-tertiary);
+    border: 2px solid var(--border-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-secondary);
+    transform: translateY(-2px);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+.theme-icon {
+    font-size: 24px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ken-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.barbie-icon {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+html.barbie-mode .ken-icon {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+html.barbie-mode .barbie-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.theme-toggle .theme-icon.animating-out {
+    animation: iconOut 0.3s ease-out forwards;
+}
+
+.theme-toggle .theme-icon.animating-in {
+    animation: iconIn 0.3s ease-out forwards;
+}
+
+@keyframes iconOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.7) rotate(-10deg);
+    }
+}
+
+@keyframes iconIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.3) rotate(10deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Navbar end positioning for theme toggle */
+.navbar-end {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 }

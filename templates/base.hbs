@@ -15,6 +15,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&family=Fira+Code:wght@400&display=swap"
           rel="stylesheet">
     {{> head}}
+    <script>
+    // Theme detection - runs before page renders to prevent FOUC
+    (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (systemPrefersDark ? 'ken' : 'barbie');
+
+        if (theme === 'barbie') {
+            document.documentElement.classList.add('barbie-mode');
+        }
+    })();
+    </script>
 </head>
 
 <body>
@@ -31,7 +43,7 @@
 function togglePasswordVisibility(inputId) {
     const input = document.getElementById(inputId);
     const eyeIcon = document.getElementById(inputId + '-eye');
-    
+
     if (input.type === 'password') {
         input.type = 'text';
         eyeIcon.classList.remove('fa-eye');
@@ -42,6 +54,27 @@ function togglePasswordVisibility(inputId) {
         eyeIcon.classList.add('fa-eye');
     }
 }
+
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    themeToggle.addEventListener('click', () => {
+        const html = document.documentElement;
+        const isBarbie = html.classList.contains('barbie-mode');
+
+        if (isBarbie) {
+            html.classList.remove('barbie-mode');
+            localStorage.setItem('theme', 'ken');
+            themeToggle.setAttribute('aria-label', 'Switch to Barbie mode');
+        } else {
+            html.classList.add('barbie-mode');
+            localStorage.setItem('theme', 'barbie');
+            themeToggle.setAttribute('aria-label', 'Switch to Ken mode');
+        }
+    });
+});
 </script>
 </body>
 
